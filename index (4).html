@@ -1,0 +1,284 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arab First Police Department - AFPD</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <!-- Login Page -->
+  <div id="loginPage" class="page active">
+    <div class="header">
+      <div class="header-logos">
+        <img src="attached_assets/03808691117d1d42-1-2_1759653171754_1759687355659.webp" alt="AFPD Logo" class="logo">
+      </div>
+      <h1>ARAB FIRST Police Department (AFPD)</h1>
+      <p class="subtitle">نظام إدارة الأفراد</p>
+    </div>
+
+    <div class="login-container">
+      <h2>تسجيل الدخول</h2>
+      <form id="loginForm">
+        <div class="form-group">
+          <label>اسم المستخدم</label>
+          <input type="text" id="username" placeholder="أدخل اسم المستخدم" required>
+        </div>
+        <div class="form-group">
+          <label>كلمة المرور</label>
+          <input type="password" id="password" placeholder="أدخل كلمة المرور" required>
+        </div>
+        <button type="submit" class="btn-primary">دخول</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Leadership Dashboard -->
+  <div id="leadershipPage" class="page">
+    <div class="header">
+      <div class="header-logos">
+        <img src="attached_assets/03808691117d1d42-1-2_1759653171754_1759687355659.webp" alt="AFPD Logo" class="logo">
+      </div>
+      <h1>لوحة تحكم القيادات - AFPD</h1>
+      <div class="logout-container">
+        <button onclick="showStrikes()" class="btn-primary" style="margin-left: 10px;">⚠️ السترايكات</button>
+        <button onclick="showRules()" class="btn-primary" style="margin-left: 10px;">📋 القوانين</button>
+        <button onclick="logout()" class="btn-secondary">تسجيل الخروج</button>
+      </div>
+    </div>
+
+    <div class="dashboard">
+      <div class="welcome-message" id="leadershipWelcome"></div>
+
+      <div class="section">
+        <h2>إضافة عسكري جديد</h2>
+        <form id="addSoldierForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label>اسم العسكري</label>
+              <input type="text" id="soldierName" required>
+            </div>
+            <div class="form-group">
+              <label>اسم المستخدم</label>
+              <input type="text" id="soldierUsername" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>كلمة المرور</label>
+              <input type="text" id="soldierPassword" required>
+            </div>
+            <div class="form-group">
+              <label>الوحدة</label>
+              <input type="text" id="soldierUnit" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>الرتبة</label>
+              <select id="soldierRank" required>
+                <option value="">اختر الرتبة</option>
+                <option value="High Commander">High Commander</option>
+                <option value="Major General">Major General</option>
+                <option value="Colonel">Colonel</option>
+                <option value="Major">Major</option>
+                <option value="Captain">Captain</option>
+                <option value="Lieutenant ll">Lieutenant ll</option>
+                <option value="Lieutenant l">Lieutenant l</option>
+                <option value="Lieutenant">Lieutenant</option>
+                <option value="staff Sergeant">staff Sergeant</option>
+                <option value="First Sergeant">First Sergeant</option>
+                <option value="Sergeant">Sergeant</option>
+                <option value="Corporal">Corporal</option>
+                <option value="Senior Officer">Senior Officer</option>
+                <option value="Officer ll">Officer ll</option>
+                <option value="Officer l">Officer l</option>
+                <option value="Officer">Officer</option>
+                <option value="CADET">CADET</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>الرقم داخل النظام</label>
+              <input type="text" id="soldierNumber" required>
+            </div>
+          </div>
+          <button type="submit" class="btn-primary">إضافة عسكري</button>
+        </form>
+      </div>
+
+      <div class="section">
+        <h2>حذف عسكري</h2>
+        <form id="deleteSoldierForm">
+          <div class="form-group">
+            <label>الرقم داخل النظام</label>
+            <input type="text" id="deleteSoldierNumber" required>
+          </div>
+          <button type="submit" class="btn-danger">حذف عسكري</button>
+        </form>
+      </div>
+
+      <div class="section">
+        <h2>إدارة النقاط</h2>
+        <form id="pointsForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label>الرقم داخل النظام</label>
+              <input type="text" id="pointsSoldierNumber" required>
+            </div>
+            <div class="form-group">
+              <label>عدد النقاط (سالب للإزالة)</label>
+              <input type="number" id="pointsAmount" required>
+            </div>
+          </div>
+          <button type="submit" class="btn-primary">تحديث النقاط</button>
+        </form>
+      </div>
+
+      <div class="section">
+        <h2>إضافة سترايك</h2>
+        <form id="strikeForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label>الرقم داخل النظام</label>
+              <input type="text" id="strikeSoldierNumber" required>
+            </div>
+            <div class="form-group">
+              <label>سبب السترايك</label>
+              <input type="text" id="strikeReason" required>
+            </div>
+          </div>
+          <button type="submit" class="btn-danger">إضافة سترايك</button>
+        </form>
+      </div>
+
+      <div class="section">
+        <h2>قائمة العساكر</h2>
+        <div id="soldiersListLeadership" class="soldiers-table"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Soldier Dashboard -->
+  <div id="soldierPage" class="page">
+    <div class="header">
+      <div class="header-logos">
+        <img src="attached_assets/03808691117d1d42-1-2_1759653171754_1759687355659.webp" alt="AFPD Logo" class="logo">
+      </div>
+      <h1>نظام الأفراد - AFPD</h1>
+      <div class="logout-container">
+        <button onclick="showRules()" class="btn-primary" style="margin-left: 10px;">📋 القوانين</button>
+        <button onclick="logout()" class="btn-secondary">تسجيل الخروج</button>
+      </div>
+    </div>
+
+    <div class="dashboard">
+      <div class="welcome-message" id="soldierWelcome"></div>
+
+      <div class="status-buttons">
+        <button onclick="checkIn()" class="btn-success">تسجيل دخول</button>
+        <button onclick="checkOut()" class="btn-danger">تسجيل خروج</button>
+      </div>
+
+      <div class="section">
+        <h2>قائمة العساكر</h2>
+        <div id="soldiersListSoldier" class="soldiers-table"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Strikes Page -->
+  <div id="strikesPage" class="page">
+    <div class="header">
+      <div class="header-logos">
+        <img src="attached_assets/03808691117d1d42-1-2_1759653171754_1759687355659.webp" alt="AFPD Logo" class="logo">
+      </div>
+      <h1>قوانين السترايك - AFPD</h1>
+      <div class="logout-container">
+        <button onclick="backToDashboard()" class="btn-secondary">العودة</button>
+      </div>
+    </div>
+
+    <div class="dashboard">
+      <div class="rules-container">
+        <div class="rule-section">
+          <h2>⚠️ قوانين السترايك</h2>
+          <p><strong>عند حصول العسكري على سترايكات، يتم التعامل معها كالتالي:</strong></p>
+          <ul>
+            <li><strong>سترايك واحد:</strong> إنذار شفهي وتنبيه رسمي</li>
+            <li><strong>سترايكين:</strong> إنذار كتابي وخصم من النقاط</li>
+            <li><strong>ثلاث سترايكات:</strong> الفصل المؤقت لمدة أسبوع</li>
+            <li><strong>أربع سترايكات:</strong> الفصل النهائي من الخدمة</li>
+          </ul>
+        </div>
+
+        <div class="rule-section">
+          <h2>📊 السترايكات المسجلة</h2>
+          <div id="strikesList"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Rules Page -->
+  <div id="rulesPage" class="page">
+    <div class="header">
+      <div class="header-logos">
+        <img src="attached_assets/03808691117d1d42-1-2_1759653171754_1759687355659.webp" alt="AFPD Logo" class="logo">
+      </div>
+      <h1>قوانين الشرطة - AFPD</h1>
+      <div class="logout-container">
+        <button onclick="backToDashboard()" class="btn-secondary">العودة</button>
+      </div>
+    </div>
+
+    <div class="dashboard">
+      <div class="rules-container">
+        <div class="rule-section">
+          <h2>📌 AFPD Rules</h2>
+          <ul>
+            <li>عدم التسلط على المواطنين و الرتب الأقل منك و الاحترام المتبادل واجب</li>
+            <li>الجدية في العمل وعدم أخذ الوظيفة على محمل كوميدي و يجب عليك تقمص شخصية العسكري لابعد حد</li>
+            <li>الالتزام بالملابس والمركبات الخاصة بك ومخالفة ذالك سيتم محاسبتك عليه</li>
+            <li>يمنع عليك اظهار سلاحك لسبب سخيف الا لو الطرف الاخر طلع سلاحه وطلق عليك اما التيزر فحال شخص هرب على الاقدام تتيزره بعد مرور 5 ثواني</li>
+            <li>لا يحق لك كلبشة شخص بمخالفة مرورية أو الذهاب به الى التحقيق الا اذا كان الشخص غير متعاون</li>
+            <li>لا يحق لك سجن الشخص دون دلائل عليه</li>
+            <li>قبل سجن الشخص يجب تفتيشه و اخذ جميع الاشياء منه</li>
+            <li>عدم استخدام الراديو الا للتبليغ و التعامل مع الراديو باحترافية قصوى و عدم الخروج عن الرول بلاي فالراديو ابدا ابدا والالتزام بالبروتوكلات العسكرية عند التحدث في الراديو</li>
+            <li>في حال المطاردة يجب عليك عدم الصدم الاحترافي على طول ويجب بينك وبين الشخص مسافة بسيطة</li>
+            <li>في حال المطاردة يمنع طلق النار الا بطلب اذن من مركز العمليات في الراديو مع وصف للحالة التي تطاردها و تاخذ الاذن منه و الحالة الوحيدة التي تسمح لك فيها طلق النار بدون اذن اذا بادر الهارب بطلق النار او شكل خطر على حياة العساكر بمثل اخراج السلاح الناري وطلق فحال انه ماطلق لايحق لك تسوي له شيء الا انك تتيزره</li>
+            <li>ضبط النفس وعدم الشتم والتهديد بالسجن او التهديد بأي صلاحية موكلة لك ويجب عليك ابعاد المشاكل الشخصية بشكل تام .!!</li>
+            <li>ممنوع منعا باتاّ عصيان اوامر الرتب العليا</li>
+          </ul>
+        </div>
+
+        <div class="rule-section">
+          <h2>📦 الأشياء التي يحق لك مصادرتها</h2>
+          <ul>
+            <li>الأسلحة الغير مرخصة</li>
+            <li>السكين والمعدات الي معها والخ ..</li>
+            <li>معدات السرقة</li>
+          </ul>
+        </div>
+
+        <div class="rule-section">
+          <h2>👥 تخص المواطن والمجرم قليلاْ</h2>
+          <ul>
+            <li>قدير موقفك في التفاوض و احترام المفاوض و عدم التعرض له او خطفه او اهانته</li>
+            <li>فحال انه تم سجنك يجب عليك تقدير موقفك ك شخص في السجن ولو انك تحت التحقيق يجب عليك تقدير الامر</li>
+            <li>يحق للعسكري تفتيشك بكل وقت في حال انه اشتبه بك او شك فيك ( تخص المواتر ايضا )</li>
+            <li>يمنع خطف العسكري في الحالات المرورية او استدراجه</li>
+            <li>يحق لك طلب محامي قبل اعترافك للعسكري وفحال المحامي طلب تكاليف تتدفع له انت العساكر مالهم دخل</li>
+            <li>يمنع التعرض للعسكري او الأستهزاء به بدون سبب مقنع</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
